@@ -1,0 +1,21 @@
+{
+  "updated_at": "1403/08/01 - 13:00",
+  "total_scanned": 80,
+  "results": [
+    {
+      "symbol": "فولاد",
+      "name": "فولاد مبارکه اصفهان",
+      "total_score": 88,
+      "scores": { "tape": 28, "fundamental": 20, "codal": 18, "technical": 22 },
+      "metrics": {
+        "buyer_power": 3.1,
+        "volume_ratio": 2.4,
+        "pe_ratio": 5.8,
+        "rsi": 58.2,
+        "price_change": 2.8,
+        "trade_value_b_toman": 18.5
+      },
+      "tags": ["ورود پول سنگین", "شکست مقاومت", "رشد فروش ماهانه"]
+    }
+  ]
+}
