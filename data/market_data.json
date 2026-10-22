@@ -1,12 +1,172 @@
 {
-  "updated_at": "1403/08/01 - 13:00",
+  "updated_at": "1405/07/30 - 23:44",
   "total_scanned": 80,
   "results": [
+    {
+      "symbol": "وبملت",
+      "name": "بانک ملت",
+      "total_score": 98,
+      "scores": {
+        "tape": 28,
+        "fundamental": 25,
+        "codal": 20,
+        "technical": 25
+      },
+      "metrics": {
+        "buyer_power": 3.4,
+        "volume_ratio": 2.5,
+        "pe_ratio": 4.9,
+        "rsi": 61.2,
+        "price_change": 3.2,
+        "trade_value_b_toman": 26.4
+      },
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
+    {
+      "symbol": "فملی",
+      "name": "ملی صنایع مس ایران",
+      "total_score": 97,
+      "scores": {
+        "tape": 30,
+        "fundamental": 22,
+        "codal": 20,
+        "technical": 25
+      },
+      "metrics": {
+        "buyer_power": 2.9,
+        "volume_ratio": 2.7,
+        "pe_ratio": 6.1,
+        "rsi": 60.4,
+        "price_change": 3.4,
+        "trade_value_b_toman": 24.2
+      },
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
+    {
+      "symbol": "زاگرس",
+      "name": "پتروشیمی زاگرس",
+      "total_score": 97,
+      "scores": {
+        "tape": 30,
+        "fundamental": 22,
+        "codal": 20,
+        "technical": 25
+      },
+      "metrics": {
+        "buyer_power": 2.85,
+        "volume_ratio": 2.6,
+        "pe_ratio": 6.2,
+        "rsi": 63.5,
+        "price_change": 3.6,
+        "trade_value_b_toman": 13.8
+      },
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
+    {
+      "symbol": "دعبید",
+      "name": "داروسازی دکتر عبیدی",
+      "total_score": 91,
+      "scores": {
+        "tape": 28,
+        "fundamental": 20,
+        "codal": 20,
+        "technical": 23
+      },
+      "metrics": {
+        "buyer_power": 2.75,
+        "volume_ratio": 2.25,
+        "pe_ratio": 6.7,
+        "rsi": 60.8,
+        "price_change": 2.4,
+        "trade_value_b_toman": 8.9
+      },
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه"
+      ]
+    },
+    {
+      "symbol": "شپنا",
+      "name": "پالایش نفت اصفهان",
+      "total_score": 90,
+      "scores": {
+        "tape": 28,
+        "fundamental": 20,
+        "codal": 18,
+        "technical": 24
+      },
+      "metrics": {
+        "buyer_power": 2.7,
+        "volume_ratio": 2.3,
+        "pe_ratio": 5.2,
+        "rsi": 59.7,
+        "price_change": 4.1,
+        "trade_value_b_toman": 21.8
+      },
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
+    {
+      "symbol": "شپدیس",
+      "name": "پتروشیمی پردیس",
+      "total_score": 90,
+      "scores": {
+        "tape": 28,
+        "fundamental": 22,
+        "codal": 18,
+        "technical": 22
+      },
+      "metrics": {
+        "buyer_power": 2.65,
+        "volume_ratio": 2.15,
+        "pe_ratio": 5.6,
+        "rsi": 57.9,
+        "price_change": 2.9,
+        "trade_value_b_toman": 10.6
+      },
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
     {
       "symbol": "فولاد",
       "name": "فولاد مبارکه اصفهان",
       "total_score": 88,
-      "scores": { "tape": 28, "fundamental": 20, "codal": 18, "technical": 22 },
+      "scores": {
+        "tape": 28,
+        "fundamental": 20,
+        "codal": 18,
+        "technical": 22
+      },
       "metrics": {
         "buyer_power": 3.1,
         "volume_ratio": 2.4,
@@ -15,7 +175,304 @@
         "price_change": 2.8,
         "trade_value_b_toman": 18.5
       },
-      "tags": ["ورود پول سنگین", "شکست مقاومت", "رشد فروش ماهانه"]
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
+    {
+      "symbol": "فارس",
+      "name": "صنایع پتروشیمی خلیج فارس",
+      "total_score": 83,
+      "scores": {
+        "tape": 25,
+        "fundamental": 20,
+        "codal": 16,
+        "technical": 22
+      },
+      "metrics": {
+        "buyer_power": 2.6,
+        "volume_ratio": 1.8,
+        "pe_ratio": 7.1,
+        "rsi": 54.3,
+        "price_change": 1.9,
+        "trade_value_b_toman": 14.7
+      },
+      "tags": [
+        "ورود پول سنگین",
+        "رشد فروش ماهانه"
+      ]
+    },
+    {
+      "symbol": "کگل",
+      "name": "معدنی و صنعتی گل گهر",
+      "total_score": 82,
+      "scores": {
+        "tape": 21,
+        "fundamental": 20,
+        "codal": 18,
+        "technical": 23
+      },
+      "metrics": {
+        "buyer_power": 2.4,
+        "volume_ratio": 2.2,
+        "pe_ratio": 6.9,
+        "rsi": 60.1,
+        "price_change": 2.2,
+        "trade_value_b_toman": 12.9
+      },
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه"
+      ]
+    },
+    {
+      "symbol": "وتجارت",
+      "name": "بانک تجارت",
+      "total_score": 79,
+      "scores": {
+        "tape": 18,
+        "fundamental": 23,
+        "codal": 16,
+        "technical": 22
+      },
+      "metrics": {
+        "buyer_power": 1.8,
+        "volume_ratio": 1.9,
+        "pe_ratio": 5.4,
+        "rsi": 56.1,
+        "price_change": 1.8,
+        "trade_value_b_toman": 15.2
+      },
+      "tags": [
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
+    {
+      "symbol": "غپاک",
+      "name": "لبنیات پاک",
+      "total_score": 79,
+      "scores": {
+        "tape": 21,
+        "fundamental": 17,
+        "codal": 18,
+        "technical": 23
+      },
+      "metrics": {
+        "buyer_power": 2.35,
+        "volume_ratio": 2.05,
+        "pe_ratio": 8.2,
+        "rsi": 64.2,
+        "price_change": 2.1,
+        "trade_value_b_toman": 5.7
+      },
+      "tags": [
+        "حجم مشکوک",
+        "شکست مقاومت",
+        "رشد فروش ماهانه"
+      ]
+    },
+    {
+      "symbol": "شبندر",
+      "name": "پالایش نفت بندرعباس",
+      "total_score": 76,
+      "scores": {
+        "tape": 21,
+        "fundamental": 17,
+        "codal": 16,
+        "technical": 22
+      },
+      "metrics": {
+        "buyer_power": 2.2,
+        "volume_ratio": 2.1,
+        "pe_ratio": 5.9,
+        "rsi": 55.8,
+        "price_change": 2.5,
+        "trade_value_b_toman": 16.4
+      },
+      "tags": [
+        "حجم مشکوک",
+        "ورود پول سنگین",
+        "شکست مقاومت",
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
+    {
+      "symbol": "کچاد",
+      "name": "معدنی و صنعتی چادرملو",
+      "total_score": 76,
+      "scores": {
+        "tape": 18,
+        "fundamental": 20,
+        "codal": 16,
+        "technical": 22
+      },
+      "metrics": {
+        "buyer_power": 2.1,
+        "volume_ratio": 1.7,
+        "pe_ratio": 7.3,
+        "rsi": 53.9,
+        "price_change": 1.7,
+        "trade_value_b_toman": 11.3
+      },
+      "tags": [
+        "رشد فروش ماهانه"
+      ]
+    },
+    {
+      "symbol": "سفارس",
+      "name": "سیمان فارس و خوزستان",
+      "total_score": 76,
+      "scores": {
+        "tape": 18,
+        "fundamental": 20,
+        "codal": 16,
+        "technical": 22
+      },
+      "metrics": {
+        "buyer_power": 1.75,
+        "volume_ratio": 1.6,
+        "pe_ratio": 7.6,
+        "rsi": 54.7,
+        "price_change": 1.5,
+        "trade_value_b_toman": 7.4
+      },
+      "tags": [
+        "رشد فروش ماهانه"
+      ]
+    },
+    {
+      "symbol": "شستا",
+      "name": "سرمایه‌گذاری تامین اجتماعی",
+      "total_score": 74,
+      "scores": {
+        "tape": 21,
+        "fundamental": 20,
+        "codal": 16,
+        "technical": 17
+      },
+      "metrics": {
+        "buyer_power": 1.9,
+        "volume_ratio": 2.1,
+        "pe_ratio": 6.1,
+        "rsi": 52.4,
+        "price_change": 1.4,
+        "trade_value_b_toman": 19.6
+      },
+      "tags": [
+        "حجم مشکوک",
+        "رشد فروش ماهانه",
+        "ارزندگی بنیادی"
+      ]
+    },
+    {
+      "symbol": "رمپنا",
+      "name": "گروه مپنا",
+      "total_score": 63,
+      "scores": {
+        "tape": 16,
+        "fundamental": 17,
+        "codal": 13,
+        "technical": 17
+      },
+      "metrics": {
+        "buyer_power": 1.55,
+        "volume_ratio": 1.35,
+        "pe_ratio": 8.9,
+        "rsi": 51.8,
+        "price_change": 0.9,
+        "trade_value_b_toman": 6.8
+      },
+      "tags": []
+    },
+    {
+      "symbol": "همراه",
+      "name": "ارتباطات سیار ایران",
+      "total_score": 55,
+      "scores": {
+        "tape": 12,
+        "fundamental": 17,
+        "codal": 13,
+        "technical": 13
+      },
+      "metrics": {
+        "buyer_power": 1.4,
+        "volume_ratio": 1.45,
+        "pe_ratio": 8.4,
+        "rsi": 49.2,
+        "price_change": 1.1,
+        "trade_value_b_toman": 9.3
+      },
+      "tags": []
+    },
+    {
+      "symbol": "خودرو",
+      "name": "ایران خودرو",
+      "total_score": 28,
+      "scores": {
+        "tape": 12,
+        "fundamental": 0,
+        "codal": 3,
+        "technical": 13
+      },
+      "metrics": {
+        "buyer_power": 1.15,
+        "volume_ratio": 2.35,
+        "pe_ratio": -1.0,
+        "rsi": 68.4,
+        "price_change": -1.2,
+        "trade_value_b_toman": 31.5
+      },
+      "tags": [
+        "حجم مشکوک"
+      ]
+    },
+    {
+      "symbol": "ذوب",
+      "name": "ذوب آهن اصفهان",
+      "total_score": 16,
+      "scores": {
+        "tape": 3,
+        "fundamental": 8,
+        "codal": 5,
+        "technical": 0
+      },
+      "metrics": {
+        "buyer_power": 0.92,
+        "volume_ratio": 1.4,
+        "pe_ratio": 14.5,
+        "rsi": 41.8,
+        "price_change": -0.6,
+        "trade_value_b_toman": 8.2
+      },
+      "tags": []
+    },
+    {
+      "symbol": "خساپا",
+      "name": "سایپا",
+      "total_score": 8,
+      "scores": {
+        "tape": 5,
+        "fundamental": 0,
+        "codal": 3,
+        "technical": 0
+      },
+      "metrics": {
+        "buyer_power": 0.85,
+        "volume_ratio": 1.85,
+        "pe_ratio": -1.0,
+        "rsi": 43.5,
+        "price_change": -1.8,
+        "trade_value_b_toman": 22.1
+      },
+      "tags": []
     }
   ]
 }
