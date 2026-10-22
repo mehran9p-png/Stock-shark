@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سامانه هوشمند غربالگری و امتیازدهی چندبعدی بورس تهران | TSE Quant Engine</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; font-family: 'Vazirmatn', system-ui, sans-serif; }
+    body {
+      background: radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.08), transparent 35%),
+                  radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.07), transparent 35%),
+                  #090d16;
+      color: #f1f5f9;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .glass-card { background: rgba(17, 24, 39, 0.84); backdrop-filter: blur(12px); border: 1px solid rgba(51, 65, 85, 0.65); }
+    .badge-score-high { background: linear-gradient(135deg, #065f46 0%, #047857 100%); color: #ecfdf5; border: 1px solid #10b981; }
+    .badge-score-mid { background: rgba(16, 185, 129, 0.22); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.55); }
+    .badge-score-low { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(251, 191, 36, 0.5); }
+    .filter-active { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border-color: #34d399; }
+    .sortable-th { cursor: pointer; user-select: none; }
+    .sortable-th:hover { background-color: rgba(30, 41, 59, 0.9); color: #34d399; }
+    .progress-track { background-color: rgba(30, 41, 59, 0.95); border-radius: 9999px; overflow: hidden; height: 6px; }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h1 class="text-lg sm:text-xl font-bold text-white">موتور امتیازدهی چندبعدی سهام بورس تهران</h1>
+        <p class="text-xs sm:text-sm text-slate-400 mt-0.5">غربالگری خودکار مبتنی بر تابلوخوانی (۳۰)، بنیادی (۲۵)، کدال (۲۰) و تکنیکال (۲۵)</p>
+      </div>
+      <div class="flex items-center gap-3 text-xs text-slate-300 bg-slate-900 px-3.5 py-2 rounded-xl border border-slate-800">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>آخرین بروزرسانی: <strong id="updatedAt" class="text-white">---</strong></span>
+        <span class="text-slate-600">|</span>
+        <span>اسکن‌شده: <strong id="totalScanned" class="text-emerald-400">0</strong> نماد</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <!-- نوار جستجو و فیلترهای سریع -->
+    <div class="glass-card rounded-2xl p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div class="relative flex-1 max-w-md">
+        <input id="searchInput" type="text" placeholder="جستجوی زنده نام یا نماد سهم (مثلاً فولاد، شپنا)..."
+          class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500" />
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button data-filter="all" class="filter-btn filter-active px-3.5 py-2 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-200">همه نمادها</button>
+        <button data-filter="score75" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-200">امتیاز بالای ۷۵</button>
+        <button data-filter="codal" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-200">فقط رشد فروش کدال</button>
+        <button data-filter="inflow" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 text-slate-200">بیشترین ورود پول</button>
+      </div>
+    </div>
+
+    <!-- جدول نمادها -->
+    <div class="glass-card rounded-2xl overflow-hidden shadow-2xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-right border-collapse">
+          <thead>
+            <tr class="bg-slate-900/95 border-b border-slate-800 text-xs font-semibold text-slate-300">
+              <th class="py-3.5 px-4 sortable-th" data-sort="symbol">نماد و شرکت ↕</th>
+              <th class="py-3.5 px-4 sortable-th text-center" data-sort="total_score">امتیاز کل (۱۰۰) ↓</th>
+              <th class="py-3.5 px-4 min-w-[240px]">تفکیک ۴ لایه تحلیلی</th>
+              <th class="py-3.5 px-3 sortable-th text-center" data-sort="buyer_power">قدرت خریدار ↕</th>
+              <th class="py-3.5 px-3 sortable-th text-center" data-sort="volume_ratio">نسبت حجم ↕</th>
+              <th class="py-3.5 px-3 sortable-th text-center" data-sort="pe_ratio">P/E ↕</th>
+              <th class="py-3.5 px-3 sortable-th text-center" data-sort="rsi">RSI ↕</th>
+              <th class="py-3.5 px-3 sortable-th text-center" data-sort="price_change">تغییر قیمت ↕</th>
+              <th class="py-3.5 px-4 sortable-th text-center" data-sort="trade_value_b_toman">ارزش معاملات (میلیارد ت) ↕</th>
+              <th class="py-3.5 px-4">تگ‌های تحلیلی</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody" class="divide-y divide-slate-800/80 text-sm"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const FALLBACK_DATA = {
+      "updated_at": "1403/08/01 - 13:00",
+      "total_scanned": 80,
+      "results": [
+        {
+          "symbol": "فولاد",
+          "name": "فولاد مبارکه اصفهان",
+          "total_score": 88,
+          "scores": { "tape": 28, "fundamental": 20, "codal": 18, "technical": 22 },
+          "metrics": { "buyer_power": 3.1, "volume_ratio": 2.4, "pe_ratio": 5.8, "rsi": 58.2, "price_change": 2.8, "trade_value_b_toman": 18.5 },
+          "tags": ["ورود پول سنگین", "شکست مقاومت", "رشد فروش ماهانه"]
+        }
+      ]
+    };
+
+    let state = { data: FALLBACK_DATA, filter: 'all', search: '', sortKey: 'total_score', sortDir: 'desc' };
+
+    const faNum = (n, dec = null) => {
+      if (n === null || n === undefined || Number.isNaN(Number(n))) return '—';
+      const s = dec !== null ? Number(n).toFixed(dec) : String(n);
+      return s.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]).replace('.', '٫');
+    };
+
+    const badgeClass = (score) => score >= 80 ? 'badge-score-high' : (score >= 65 ? 'badge-score-mid' : 'badge-score-low');
+
+    async function init() {
+      try {
+        const res = await fetch('data/market_data.json', { cache: 'no-store' });
+        if (res.ok) state.data = await res.json();
+      } catch (e) {}
+      document.getElementById('updatedAt').textContent = state.data.updated_at || '—';
+      document.getElementById('totalScanned').textContent = faNum(state.data.total_scanned || 0);
+      render();
+    }
+
+    function render() {
+      const q = state.search.trim().toLowerCase();
+      let rows = (state.data.results || []).filter(r => {
+        if (q && !(r.symbol.toLowerCase().includes(q) || r.name.toLowerCase().includes(q) || (r.tags || []).some(t => t.includes(q)))) return false;
+        if (state.filter === 'score75') return r.total_score > 75;
+        if (state.filter === 'codal') return (r.tags || []).includes('رشد فروش ماهانه');
+        if (state.filter === 'inflow') return (r.tags || []).includes('ورود پول سنگین') || (r.metrics?.buyer_power >= 2.2);
+        return true;
+      });
+
+      rows.sort((a, b) => {
+        if (state.sortKey === 'symbol') return state.sortDir === 'asc' ? a.symbol.localeCompare(b.symbol, 'fa') : b.symbol.localeCompare(a.symbol, 'fa');
+        const va = state.sortKey === 'total_score' ? a.total_score : (a.metrics?.[state.sortKey] ?? -999);
+        const vb = state.sortKey === 'total_score' ? b.total_score : (b.metrics?.[state.sortKey] ?? -999);
+        return state.sortDir === 'asc' ? va - vb : vb - va;
+      });
+
+      document.getElementById('tableBody').innerHTML = rows.map(r => {
+        const s = r.scores || {};
+        const m = r.metrics || {};
+        return `
+          <tr class="hover:bg-slate-800/50 transition">
+            <td class="py-3.5 px-4"><div class="font-bold text-white">${r.symbol}</div><div class="text-xs text-slate-400">${r.name}</div></td>
+            <td class="py-3.5 px-4 text-center"><span class="inline-block min-w-[50px] px-3 py-1 rounded-xl font-extrabold ${badgeClass(r.total_score)}">${faNum(r.total_score)}</span></td>
+            <td class="py-3.5 px-4">
+              <div class="grid grid-cols-2 gap-2 text-[11px]">
+                <div><div class="flex justify-between"><span>تابلو</span><span class="text-cyan-400">${faNum(s.tape)}/۳۰</span></div><div class="progress-track"><div class="h-full bg-cyan-400" style="width:${(s.tape/30)*100}%"></div></div></div>
+                <div><div class="flex justify-between"><span>بنیادی</span><span class="text-violet-400">${faNum(s.fundamental)}/۲۵</span></div><div class="progress-track"><div class="h-full bg-violet-400" style="width:${(s.fundamental/25)*100}%"></div></div></div>
+                <div><div class="flex justify-between"><span>کدال</span><span class="text-amber-400">${faNum(s.codal)}/۲۰</span></div><div class="progress-track"><div class="h-full bg-amber-400" style="width:${(s.codal/20)*100}%"></div></div></div>
+                <div><div class="flex justify-between"><span>تکنیکال</span><span class="text-emerald-400">${faNum(s.technical)}/۲۵</span></div><div class="progress-track"><div class="h-full bg-emerald-400" style="width:${(s.technical/25)*100}%"></div></div></div>
+              </div>
+            </td>
+            <td class="py-3.5 px-3 text-center font-semibold text-cyan-300">${faNum(m.buyer_power, 2)}x</td>
+            <td class="py-3.5 px-3 text-center font-semibold text-amber-300">${faNum(m.volume_ratio, 2)}x</td>
+            <td class="py-3.5 px-3 text-center">${m.pe_ratio > 0 ? faNum(m.pe_ratio, 1) : 'زیان‌ده'}</td>
+            <td class="py-3.5 px-3 text-center">${faNum(m.rsi, 1)}</td>
+            <td class="py-3.5 px-3 text-center font-bold ${m.price_change >= 0 ? 'text-emerald-400' : 'text-rose-400'}" dir="ltr">${m.price_change > 0 ? '+' : ''}${faNum(m.price_change, 1)}٪</td>
+            <td class="py-3.5 px-4 text-center font-semibold">${faNum(m.trade_value_b_toman, 1)}</td>
+            <td class="py-3.5 px-4"><div class="flex flex-wrap gap-1">${(r.tags || []).map(t => `<span class="px-2 py-0.5 text-[11px] rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">${t}</span>`).join('')}</div></td>
+          </tr>`;
+      }).join('');
+    }
+
+    document.getElementById('searchInput').addEventListener('input', e => { state.search = e.target.value; render(); });
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+      state.filter = btn.dataset.filter;
+      if (state.filter === 'inflow') { state.sortKey = 'buyer_power'; state.sortDir = 'desc'; }
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
+      btn.classList.add('filter-active');
+      render();
+    }));
+    document.querySelectorAll('.sortable-th').forEach(th => th.addEventListener('click', () => {
+      const k = th.dataset.sort;
+      state.sortDir = (state.sortKey === k && state.sortDir === 'desc') ? 'asc' : 'desc';
+      state.sortKey = k;
+      render();
+    }));
+    init();
+  </script>
+</body>
+</html>
